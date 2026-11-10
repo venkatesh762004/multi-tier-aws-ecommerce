@@ -10,6 +10,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ecommerce-terraform-state
+  cancel-in-progress: false
+
 jobs:
   terraform:
     name: Terraform Deploy
@@ -17,7 +21,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: .
+        working-directory: ./terraform
 
     steps:
       - name: Checkout Repository
